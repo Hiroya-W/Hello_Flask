@@ -3,12 +3,9 @@ from flask import Flask, render_template, request
 app = Flask(__name__)
 
 
-@app.route("/hello", methods=["POST"])
+@app.route("/hello")
 def hello(name=None):
-    if request.method == "POST":
-        name = request.form["name"]
-    else:
-        name = "no name."
+    name = request.args.get("name")
     return render_template("hello.html", title="Flask Test", name=name)
 
 
